@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const Workout = require("../models/workout");
 
-router.post("/api/workouts", ({ body }, res) => {
-  Workout.create(body)
+router.post("/api/workouts", (req, res) => {
+  Workout.collection.insertOne(req.body)
     .then(workout => {
       res.json(workout);
     })
@@ -11,8 +11,8 @@ router.post("/api/workouts", ({ body }, res) => {
     });
 });
 
-router.put("/api/workouts/:id", ({ body }, res) => {
-  Workout.updateOne({_id: body.id}, {$push: {exercises: body}})
+router.put("/api/workouts/:id", (req, res) => {
+  Workout.updateOne({_id: req.params.id}, {$push: {exercises: body}})
     .then(workout => {
       res.json(workout);
     })

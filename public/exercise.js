@@ -26,7 +26,7 @@ async function initExercise() {
     console.log(workout)
     reqID = workout._id;
   }
-  
+
   if (workout) {
     location.search = "?id=" + workout._id;
     reqID = workout._id;
@@ -102,7 +102,7 @@ function validateInputs() {
 async function handleFormSubmit(event) {
   event.preventDefault();
 
-  let workoutData = {id: reqID};
+  let workoutData = {};
 
   if (workoutType === "cardio") {
     workoutData.type = "cardio";
