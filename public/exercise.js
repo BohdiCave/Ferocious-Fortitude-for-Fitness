@@ -16,6 +16,7 @@ const newWorkout = document.querySelector(".new-workout")
 
 let workoutType = null;
 let shouldNavigateAway = false;
+let reqID;
 
 async function initExercise() {
   let workout;
@@ -26,6 +27,7 @@ async function initExercise() {
   }
   if (workout) {
     location.search = "?id=" + workout._id;
+    reqID = workout._id;
   }
 
 }
@@ -98,7 +100,7 @@ function validateInputs() {
 async function handleFormSubmit(event) {
   event.preventDefault();
 
-  let workoutData = {};
+  let workoutData = {id: reqID};
 
   if (workoutType === "cardio") {
     workoutData.type = "cardio";

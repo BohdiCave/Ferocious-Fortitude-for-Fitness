@@ -11,8 +11,8 @@ router.post("/api/workouts", ({ body }, res) => {
     });
 });
 
-router.post("/api/workouts/:id", ({ body }, res) => {
-  Workout.insertMany(body)
+router.put("/api/workouts/:id", ({ body }, res) => {
+  Workout.updateOne({_id: body.id}, {$push: {exercises: body}})
     .then(workout => {
       res.json(workout);
     })
@@ -40,13 +40,6 @@ router.get("/api/workouts/range", (req, res) => {
     })
     .catch(err => {
       res.status(400).json(err);
-    });
-});
-
-router.get("/exercise/:id", (req, res) => {
-  Workout.find({_id: req.params.id})
-    .then(workout => {
-      res.send("exercise", {workout});
     });
 });
 
